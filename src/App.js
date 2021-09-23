@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './Login';
 
 function App() {
@@ -25,14 +24,9 @@ function App() {
     }
   }, [])
   return (
-
-    <BrowserRouter>
       <div className="App" >
-        <Switch>
-          <Route exact path='/' component={Login} />
-        </Switch>
+        <Login />
       </div>
-    </BrowserRouter>
   );
 }
 
