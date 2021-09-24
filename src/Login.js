@@ -104,7 +104,7 @@ export default function Login(props) {
                             M.toast({ html: "You've already submitted the form using this email id." })
                             firebaseOut()
                         } else {
-                            firebase.firestore().collection("blacklist").doc("30DaysOfGCP").set({
+                            firebase.firestore().collection("blacklist").doc("30DaysOfGCP").update({
                                 emails: firebase.firestore.FieldValue.arrayUnion(res.user.email)
                             }).then(() => {
                                 setIsSignedIn(res)
