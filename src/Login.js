@@ -43,33 +43,34 @@ export default function Login(props) {
 
     const [isSignedin, setIsSignedIn] = useState(false)
 
-    useEffect(() => {
-        setTimeout(() => {
-            var devtools = function () { };
-            devtools.toString = function () {
-                if (document.querySelector("#zeIframe") != null) {
-                    document.querySelector("#zeIframe").setAttribute("src", "")
-                }
-                // logout()
-                setIsSignedIn(false)
-                clearInterval(timeout)
-                M.toast({ html: "You've been logged out as we detected something sus!" })
-                return '-'
-            }
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         var devtools = function () { };
+    //         devtools.toString = function () {
+    //             if (document.querySelector("#zeIframe") != null) {
+    //                 document.querySelector("#zeIframe").setAttribute("src", "")
+    //             }
+    //             // logout()
+    //             setIsSignedIn(false)
+    //             clearInterval(timeout)
+    //             M.toast({ html: "You've been logged out as we detected something sus!" })
+    //             return '-'
+    //         }
 
-            timeout = setInterval(() => {
-                console.profile(devtools)
-                console.profileEnd(devtools)
-            }, 1000)
-        }, 1000)
+    //         timeout = setInterval(() => {
+    //             console.profile(devtools)
+    //             console.profileEnd(devtools)
+    //         }, 1000)
+    //     }, 1000)
 
-        return () => {
-            clearInterval(timeout)
-        }
-    }, [isSignedin])
+    //     return () => {
+    //         clearInterval(timeout)
+    //     }
+    // }, [isSignedin])
 
-    const logout = () => {
-        M.toast({ html: "You must login with an nmims email domain. Logging out..." })
+
+    
+    const firebaseOut = () => {
         firebase.auth().signOut().then(() => {
             M.toast({ html: "Logged out. Refresh to continue" })
             setIsSignedIn(false)
@@ -77,6 +78,11 @@ export default function Login(props) {
             console.log("Error caught while logging out:", err)
             setIsSignedIn(false)
         })
+    }
+
+    const logout = () => {
+        M.toast({ html: "You must login with an nmims email domain. Logging out..." })
+        firebaseOut()
     }
 
     const uiConfig = {
@@ -90,7 +96,23 @@ export default function Login(props) {
             // Avoid redirects after sign-in.
             signInSuccessWithAuthResult: (res) => {
                 if (res.user && res.user.email && res.user.email.includes("nmims.edu.in")) {
-                    setIsSignedIn(res)
+                    firebase.firestore().collection("blacklist").doc("30DaysOfGCP").get().then((data) => {
+                        let people = data.data().emails
+                        console.log("peeps", people)
+                        console.log("ckec", people.includes(res.user.email))
+                        if (people && people.includes(res.user.email)) {
+                            M.toast({ html: "You've already submitted the form using this email id." })
+                            firebaseOut()
+                        } else {
+                            firebase.firestore().collection("blacklist").doc("30DaysOfGCP").set({
+                                emails: firebase.firestore.FieldValue.arrayUnion(res.user.email)
+                            }).then(() => {
+                                setIsSignedIn(res)
+                            })
+                        }
+                    }).catch(err => {
+                        M.toast({ html: "Something went wrong, please try again!" })
+                    })
                 } else {
                     logout()
                 }
