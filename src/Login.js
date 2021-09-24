@@ -96,23 +96,8 @@ export default function Login(props) {
             // Avoid redirects after sign-in.
             signInSuccessWithAuthResult: (res) => {
                 if (res.user && res.user.email && res.user.email.includes("nmims.edu.in")) {
-                    firebase.firestore().collection("blacklist").doc("30DaysOfGCP").get().then((data) => {
-                        let people = data.data().emails
-                        console.log("peeps", people)
-                        console.log("ckec", people.includes(res.user.email))
-                        if (people && people.includes(res.user.email)) {
-                            M.toast({ html: "You've already submitted the form using this email id." })
-                            firebaseOut()
-                        } else {
-                            firebase.firestore().collection("blacklist").doc("30DaysOfGCP").update({
-                                emails: firebase.firestore.FieldValue.arrayUnion(res.user.email)
-                            }).then(() => {
-                                setIsSignedIn(res)
-                            })
-                        }
-                    }).catch(err => {
-                        M.toast({ html: "Something went wrong, please try again!" })
-                    })
+                    
+                    setIsSignedIn(res)
                 } else {
                     logout()
                 }
