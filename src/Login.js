@@ -119,7 +119,7 @@ export default function Login(props) {
                                 contextMenu="return false;"
                             // onLoad={() => strict()}
                             >
-                                Loading...
+
                             </iframe>
                         </div>
                     ) : (
