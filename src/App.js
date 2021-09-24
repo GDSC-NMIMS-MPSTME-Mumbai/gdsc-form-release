@@ -2,9 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Login from './Login';
+import firebase from 'firebase';
 
 function App() {
+  const [url, setUrl] = useState("")
   useEffect(() => {
+    console.log("here")
+    firebase.firestore().collection("forms").orderBy("createdOn", 'desc').limit(1).get().then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log("doc", doc.data())
+        setUrl(doc.data()["link"])
+      })
+    }).catch(err => {
+      console.log("erorr", err)
+    })
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
@@ -24,9 +35,9 @@ function App() {
     }
   }, [])
   return (
-      <div className="App" >
-        <Login />
-      </div>
+    <div className="App" >
+      <Login url={url} />
+    </div>
   );
 }
 

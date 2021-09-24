@@ -1,7 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import 'firebase/storage';
 import config from './fbConfigDeets'
 
 
@@ -16,9 +15,8 @@ var firebaseConfig = {
   appId: config.appId,
   measurementId: config.measurementId
 };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  export const db = firebase.firestore()
-  export const storage = firebase.storage()
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+export const db = firebase.firestore()
 
-  export default firebase
+export default firebase
