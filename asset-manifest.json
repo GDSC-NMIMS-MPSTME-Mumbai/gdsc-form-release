@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/gdsc-form-release/static/css/main.a617e044.chunk.css",
-    "main.js": "/gdsc-form-release/static/js/main.cfe62409.chunk.js",
-    "main.js.map": "/gdsc-form-release/static/js/main.cfe62409.chunk.js.map",
+    "main.js": "/gdsc-form-release/static/js/main.4d19879d.chunk.js",
+    "main.js.map": "/gdsc-form-release/static/js/main.4d19879d.chunk.js.map",
     "runtime-main.js": "/gdsc-form-release/static/js/runtime-main.dd9591a1.js",
     "runtime-main.js.map": "/gdsc-form-release/static/js/runtime-main.dd9591a1.js.map",
-    "static/js/2.aef23011.chunk.js": "/gdsc-form-release/static/js/2.aef23011.chunk.js",
-    "static/js/2.aef23011.chunk.js.map": "/gdsc-form-release/static/js/2.aef23011.chunk.js.map",
+    "static/js/2.057befb7.chunk.js": "/gdsc-form-release/static/js/2.057befb7.chunk.js",
+    "static/js/2.057befb7.chunk.js.map": "/gdsc-form-release/static/js/2.057befb7.chunk.js.map",
     "index.html": "/gdsc-form-release/index.html",
     "static/css/main.a617e044.chunk.css.map": "/gdsc-form-release/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.aef23011.chunk.js.LICENSE.txt": "/gdsc-form-release/static/js/2.aef23011.chunk.js.LICENSE.txt",
+    "static/js/2.057befb7.chunk.js.LICENSE.txt": "/gdsc-form-release/static/js/2.057befb7.chunk.js.LICENSE.txt",
     "static/media/logo.6ce24c58.svg": "/gdsc-form-release/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.dd9591a1.js",
-    "static/js/2.aef23011.chunk.js",
+    "static/js/2.057befb7.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.cfe62409.chunk.js"
+    "static/js/main.4d19879d.chunk.js"
   ]
 }
